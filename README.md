@@ -22,7 +22,7 @@ This class provides basic functionality for recording and processing data values
 ### Methods
 
 * `Update(double)`
-  Records the passed value. By passing `double.NaN` it has no effect. 
+  Records the passed value. By passing `double.NaN` the call is without effect. 
   
 * `Restart()`
   All data recorded so far is discarded to start over. Typically used after consuming the wanted characteristic values of the recording. `Designation` is the only property conserved.
