@@ -4,11 +4,6 @@ namespace At.Matus.DataSeriesPod
 {
     public class DataSeriesPod
     {
-        // TODO
-        //   SampleSize -> Count
-        //   FirstDate -> StartDate
-        //   Update() -> Add(); Insert()
-        //   Designation -> ID; Name; Title; Label; Description; Tag
 
         #region Ctor
 
@@ -101,7 +96,6 @@ namespace At.Matus.DataSeriesPod
                 ? string.Format("{0} : {1} ± {2}", Designation, AverageValue, Range/2.0)
                 : string.Format("{0} : {1}", Designation, noDataYet );
         }
-
-
+        
     }
 }
