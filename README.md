@@ -4,7 +4,7 @@ DataSeriesPod (c-sharp-data-series-pod)
 A Simple C# Data Logging Library.
 
 ## DataSeriesPod
-This class provides basic functionality for recording and processing data values. It is typically used for preprocessing of frequently arriving sensor data. 
+This class provides basic functionality for recording and processing data values. It is typically used for preprocessing and data reduction of frequently arriving sensor data. 
 
 ## Key features
 
@@ -12,7 +12,7 @@ This class provides basic functionality for recording and processing data values
 * Clean API
 * Lightweight (small memory footprint)
 * No additional dependencies
-* Multi-platform (Windows, MacOS) 
+* Multi-platform (Windows, MacOS, Linux) 
 
 ### Constructor
 
