@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.202
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "At.Matus.DataSeriesPod", "At.Matus.DataSeriesPod.csproj", "{49FB6440-1F20-4EF8-A85D-2BA970ECE8BA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{49FB6440-1F20-4EF8-A85D-2BA970ECE8BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49FB6440-1F20-4EF8-A85D-2BA970ECE8BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49FB6440-1F20-4EF8-A85D-2BA970ECE8BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49FB6440-1F20-4EF8-A85D-2BA970ECE8BA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {88B756E7-2D2C-4286-8289-5ED4B671C2CC}
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		Policies = $0
+		$0.DotNetNamingPolicy = $1
+		$1.DirectoryNamespaceAssociation = PrefixedHierarchical
+		$0.TextStylePolicy = $2
+		$2.FileWidth = 80
+		$2.TabsToSpaces = True
+		$2.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $3
+		$3.scope = text/x-csharp
+		$0.TextStylePolicy = $4
+		$4.FileWidth = 80
+		$4.TabsToSpaces = True
+		$4.scope = text/plain
+		$0.StandardHeader = $5
+		$0.VersionControlPolicy = $6
+		$6.CommitMessageStyle = $7
+		$7.LastFilePostfix = "@:\n  "
+	EndGlobalSection
+EndGlobal
