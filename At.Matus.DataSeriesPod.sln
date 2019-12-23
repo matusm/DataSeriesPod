@@ -40,5 +40,6 @@ Global
 		$0.VersionControlPolicy = $6
 		$6.CommitMessageStyle = $7
 		$7.LastFilePostfix = "@:\n  "
+		$7.LineAlign = 0
 	EndGlobalSection
 EndGlobal
