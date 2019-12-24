@@ -82,8 +82,8 @@ namespace At.Matus.DataSeriesPod
             return ts.TotalSeconds;
         }
 
-        private readonly string noDesignationSpecified = "<not specified>";
-        private readonly string noDataYet = "no data yet";
+        private const string noDesignationSpecified = "<not specified>";
+        private const string noDataYet = "no data yet";
         private double sumValue;
         private double maximumValue;
         private double minimumValue;
