@@ -7,11 +7,11 @@ namespace At.Matus.DataSeriesPod
 
         #region Ctor
 
-        public DataSeriesPod(string designation)
+        public DataSeriesPod(string name)
         {
-            Designation = designation.Trim();
-            if (string.IsNullOrEmpty(Designation))
-                Designation = noDesignationSpecified;
+            Name = name.Trim();
+            if (string.IsNullOrEmpty(Name))
+                Name = noNameSpecified;
             Restart();
         }
 
@@ -21,18 +21,20 @@ namespace At.Matus.DataSeriesPod
 
         #region Properties
 
-        public double AverageValue { get { return GetValueIfValid(sumValue / SampleSize); } }
-        public double Range { get { return GetValueIfValid((maximumValue - minimumValue)); } }
+        public string Name { get; private set; }
+        public long SampleSize { get; private set; }
+
+        public double AverageValue { get; private set; }
         public double FirstValue { get; private set; }
         public double MostRecentValue { get; private set; }
-        public double MaximumValue { get { return GetValueIfValid(maximumValue); } }
-        public double MinimumValue { get { return GetValueIfValid(minimumValue); } }
-        public double CentralValue { get { return GetValueIfValid((maximumValue + minimumValue) / 2.0); } }
-        public long SampleSize { get; private set; }
-        public string Designation { get; private set; }
+        public double MaximumValue { get; private set; }
+        public double MinimumValue { get; private set; }
+        public double Range => MaximumValue - MinimumValue;
+        public double CentralValue => (MaximumValue + MinimumValue) / 2.0;
+
         public DateTime FirstDate { get; private set; }
         public DateTime MostRecentValueDate { get; private set; }
-        public double Duration { get { return GetDurationInSeconds(); } }
+        public double Duration => MostRecentValueDate.Subtract(FirstDate).TotalSeconds;
 
         #endregion
 
@@ -41,9 +43,9 @@ namespace At.Matus.DataSeriesPod
         public void Restart()
         {
             SampleSize = 0;
-            sumValue = 0;
-            maximumValue = double.MinValue;
-            minimumValue = double.MaxValue;
+            AverageValue = double.NaN;
+            MaximumValue = double.NaN;
+            MinimumValue = double.NaN;
             FirstValue = double.NaN;
             MostRecentValue = double.NaN;
             FirstDate = DateTime.UtcNow;
@@ -59,43 +61,34 @@ namespace At.Matus.DataSeriesPod
             {
                 FirstValue = value;
                 FirstDate = DateTime.UtcNow;
+                AverageValue = value;
+                MaximumValue = value;
+                MinimumValue = value;
             }
             MostRecentValueDate = DateTime.UtcNow;
             MostRecentValue = value;
-            sumValue += value;
-            if (value > maximumValue) maximumValue = value;
-            if (value < minimumValue) minimumValue = value;
+            // https://diego.assencio.com/?index=c34d06f4f4de2375658ed41f70177d59
+            AverageValue += (value - AverageValue) / SampleSize;
+            if (value > MaximumValue) MaximumValue = value;
+            if (value < MinimumValue) MinimumValue = value;
         }
 
         #endregion
 
         #region private stuff
 
-        private double GetValueIfValid(double value)
-        {
-            return SampleSize <= 0 ? double.NaN : value;
-        }
-
-        private double GetDurationInSeconds()
-        {
-            TimeSpan ts = MostRecentValueDate.Subtract(FirstDate);
-            return ts.TotalSeconds;
-        }
-
-        private const string noDesignationSpecified = "<not specified>";
+        private const string noNameSpecified = "<name not specified>";
         private const string noDataYet = "no data yet";
-        private double sumValue;
-        private double maximumValue;
-        private double minimumValue;
 
         #endregion
 
-        public override string ToString()
-        {
-            return SampleSize > 0
-                ? string.Format("{0} : {1} ± {2}", Designation, AverageValue, Range/2.0)
-                : string.Format("{0} : {1}", Designation, noDataYet );
-        }
-        
+        //public override string ToString() => SampleSize > 0
+        //        ? string.Format("{0} : {1} ± {2}", Name, AverageValue, Range / 2.0)
+        //        : string.Format("{0} : {1}", Name, noDataYet);
+
+        public override string ToString() => SampleSize > 0
+                ? $"{Name} : {AverageValue} ± {Range / 2.0}"
+                : $"{Name} : {noDataYet}";
+
     }
 }

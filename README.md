@@ -17,7 +17,7 @@ This class provides basic functionality for recording and processing data values
 ### Constructor
 
 * `DataSeriesPod(string)`
-  Creates a new instance of this class taking a designation string as the single argument.
+  Creates a new instance of this class taking a name string as the single argument.
 
 ### Methods
 
@@ -25,7 +25,7 @@ This class provides basic functionality for recording and processing data values
   Records the passed value. By passing `double.NaN` the call is without effect. 
   
 * `Restart()`
-  All data recorded so far is discarded to start over. Typically used after consuming the wanted characteristic values of the recording. `Designation` is the only property conserved.
+  All data recorded so far is discarded to start over. Typically used after consuming the wanted characteristic values of the recording. `Name` is the only property conserved.
 
 ### Properties
 
@@ -62,17 +62,19 @@ This class provides basic functionality for recording and processing data values
 * `Duration`
   Returns the duration in seconds between the `FirstValueDate` and the `MostRecentValueDate`.
 
-* `Designation`
-  Returns the designation string as provided during creation of the object.
+* `Name`
+  Returns the name string as provided during creation of the object.
 
 ### Notes
 
 All properties are getters only. A `double.NaN` is returned for properties which are (yet) undefined.
 
-Once instantiated, it is not possible to modify the object's designation. 
-The string provided in the constructor is trimmed and if empty, a generic designation is used. 
+Once instantiated, it is not possible to modify the object's name. 
+The string provided in the constructor is trimmed and if empty, a generic name is used. 
 
 The data set recorded during the object's life cycle is never accessible; moreover it is not even stored internally. Only the selected characteristic values are accessible through properties.
+
+The arithmetic mean is computed in a numerically stable way. For details see https://diego.assencio.com/?index=c34d06f4f4de2375658ed41f70177d59
 
 ### Usage
 
@@ -101,7 +103,7 @@ namespace dspTest
                 {
                     Console.WriteLine("Sample size: {0}", dsp.SampleSize);
                     Console.WriteLine("Mean value: {0}", dsp.AverageValue);
-                    Console.WriteLine(dsp); // ToString() is implemented
+                    Console.WriteLine(dsp); // ToString() is implemented also
                     dsp.Restart();
                 }
             }
