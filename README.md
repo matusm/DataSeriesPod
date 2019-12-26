@@ -78,10 +78,10 @@ The arithmetic mean is computed in a numerically stable way. For details see htt
 
 ### Usage
 
-The folowing code fragment of a simple program shows the use of this class.
-Sensor data is queried in an infinite loop and after every 10 seconds the average 
+The following code fragment of a simple program shows the use of this class.
+Here sensor data are queried in an infinite loop and after every 10 seconds the average 
 value and the number of samples are written to the console. 
-In a similar way one can use other properties, like `SampleSize` or 
+In a similar way one can leverage other properties, like `SampleSize` or 
 `MostRecentValueDate`, to escape from the loop. 
 
 ```cs
