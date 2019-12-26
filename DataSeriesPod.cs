@@ -73,6 +73,10 @@ namespace At.Matus.DataSeriesPod
             if (value < MinimumValue) MinimumValue = value;
         }
 
+        public override string ToString() => SampleSize > 0
+            ? $"{Name} : {AverageValue} ± {Range / 2.0}"
+            : $"{Name} : {noDataYet}";
+
         #endregion
 
         #region private stuff
@@ -81,14 +85,6 @@ namespace At.Matus.DataSeriesPod
         private const string noDataYet = "no data yet";
 
         #endregion
-
-        //public override string ToString() => SampleSize > 0
-        //        ? string.Format("{0} : {1} ± {2}", Name, AverageValue, Range / 2.0)
-        //        : string.Format("{0} : {1}", Name, noDataYet);
-
-        public override string ToString() => SampleSize > 0
-                ? $"{Name} : {AverageValue} ± {Range / 2.0}"
-                : $"{Name} : {noDataYet}";
 
     }
 }
