@@ -1,5 +1,5 @@
-DataSeriesPod (c-sharp-data-series-pod)
-=======================================
+DataSeriesPod
+=============
 
 A Simple C# Data Logging Library.
 
