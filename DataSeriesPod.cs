@@ -7,15 +7,13 @@ namespace At.Matus.DataSeriesPod
 
         #region Ctor
 
-        public DataSeriesPod(string name)
+        public DataSeriesPod(string name = noNameSpecified)
         {
             Name = name.Trim();
             if (string.IsNullOrEmpty(Name))
                 Name = noNameSpecified;
             Restart();
         }
-
-        public DataSeriesPod() : this("") { }
 
         #endregion
 
