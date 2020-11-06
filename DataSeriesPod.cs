@@ -13,7 +13,7 @@ namespace At.Matus.DataSeriesPod
             Restart();
         }
 
-        public string Name { get; private set; }
+        public string Name { get; }
         public long SampleSize { get; private set; }
         public double AverageValue { get; private set; }
         public double FirstValue { get; private set; }
@@ -35,7 +35,7 @@ namespace At.Matus.DataSeriesPod
             FirstValue = double.NaN;
             MostRecentValue = double.NaN;
             FirstDate = DateTime.UtcNow;
-            MostRecentValueDate = DateTime.UtcNow;
+            MostRecentValueDate = FirstDate;
         }
 
         public void Update(double value)
