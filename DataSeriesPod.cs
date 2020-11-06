@@ -5,8 +5,6 @@ namespace At.Matus.DataSeriesPod
     public class DataSeriesPod
     {
 
-        #region Ctor
-
         public DataSeriesPod(string name = noNameSpecified)
         {
             Name = name.Trim();
@@ -15,13 +13,8 @@ namespace At.Matus.DataSeriesPod
             Restart();
         }
 
-        #endregion
-
-        #region Properties
-
         public string Name { get; private set; }
         public long SampleSize { get; private set; }
-
         public double AverageValue { get; private set; }
         public double FirstValue { get; private set; }
         public double MostRecentValue { get; private set; }
@@ -29,14 +22,9 @@ namespace At.Matus.DataSeriesPod
         public double MinimumValue { get; private set; }
         public double Range => MaximumValue - MinimumValue;
         public double CentralValue => (MaximumValue + MinimumValue) / 2.0;
-
         public DateTime FirstDate { get; private set; }
         public DateTime MostRecentValueDate { get; private set; }
         public double Duration => MostRecentValueDate.Subtract(FirstDate).TotalSeconds;
-
-        #endregion
-
-        #region Methods
 
         public void Restart()
         {
@@ -75,14 +63,8 @@ namespace At.Matus.DataSeriesPod
             ? $"{Name} : {AverageValue} ± {Range / 2.0}"
             : $"{Name} : {noDataYet}";
 
-        #endregion
-
-        #region private stuff
-
         private const string noNameSpecified = "<name not specified>";
         private const string noDataYet = "no data yet";
-
-        #endregion
 
     }
 }
