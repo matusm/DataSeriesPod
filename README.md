@@ -14,10 +14,13 @@ This class provides basic functionality for recording and processing data values
 * No additional dependencies
 * Multi-platform (Windows, MacOS, Linux) 
 
-### Constructor
+### Constructors
 
 * `DataSeriesPod(string)`
   Creates a new instance of this class taking a name string as the single argument.
+
+* `DataSeriesPod()`
+  Creates a new instance of this class using a GUID string as `Name`.
 
 ### Methods
 
@@ -70,7 +73,7 @@ This class provides basic functionality for recording and processing data values
 All properties are getters only. A `double.NaN` is returned for properties which are (yet) undefined.
 
 Once instantiated, it is not possible to modify the object's name. 
-The string provided in the constructor is trimmed and if empty, a generic name is used. 
+The string provided in the constructor is trimmed and if empty, a GUID string is used. 
 
 The data set recorded during the object's life cycle is never accessible; moreover it is not even stored internally. Only the selected characteristic values are accessible through properties.
 
@@ -101,8 +104,8 @@ namespace dspTest
                 dsp.Update(GetSensorValue());
                 if(dsp.Duration >= samplingDuration)
                 {
-                    Console.WriteLine("Sample size: {0}", dsp.SampleSize);
-                    Console.WriteLine("Mean value: {0}", dsp.AverageValue);
+                    Console.WriteLine($"Sample size: {dsp.SampleSize}");
+                    Console.WriteLine($"Mean value: {dsp.AverageValue}");
                     Console.WriteLine(dsp); // ToString() is implemented also
                     dsp.Restart();
                 }
@@ -116,4 +119,3 @@ namespace dspTest
     }
 }
 ```
-
