@@ -5,11 +5,11 @@ namespace At.Matus.DataSeriesPod
     public class DataSeriesPod
     {
 
-        public DataSeriesPod(string name = noNameSpecified)
+        public DataSeriesPod(string name = "")
         {
             Name = name.Trim();
             if (string.IsNullOrEmpty(Name))
-                Name = noNameSpecified;
+                Name = Guid.NewGuid().ToString();
             Restart();
         }
 
@@ -63,7 +63,6 @@ namespace At.Matus.DataSeriesPod
             ? $"{Name} : {AverageValue} ± {Range / 2.0}"
             : $"{Name} : {noDataYet}";
 
-        private const string noNameSpecified = "<name not specified>";
         private const string noDataYet = "no data yet";
 
     }
