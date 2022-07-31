@@ -24,6 +24,8 @@ namespace At.Matus.DataSeriesPod
         public double CentralValue => (MaximumValue + MinimumValue) / 2.0;
         public DateTime FirstDate { get; private set; }
         public DateTime MostRecentValueDate { get; private set; }
+        public DateTime MaximumValueDate { get; private set; }
+        public DateTime MinimumValueDate { get; private set; }
         public double Duration => MostRecentValueDate.Subtract(FirstDate).TotalSeconds;
 
         public void Restart()
@@ -36,6 +38,8 @@ namespace At.Matus.DataSeriesPod
             MostRecentValue = double.NaN;
             FirstDate = DateTime.UtcNow;
             MostRecentValueDate = FirstDate;
+            MaximumValueDate = FirstDate;
+            MinimumValueDate = FirstDate;
         }
 
         public void Update(double value)
@@ -50,13 +54,22 @@ namespace At.Matus.DataSeriesPod
                 AverageValue = value;
                 MaximumValue = value;
                 MinimumValue = value;
+                MaximumValueDate = FirstDate;
+                MinimumValueDate = FirstDate;
             }
             MostRecentValueDate = DateTime.UtcNow;
             MostRecentValue = value;
-            // https://diego.assencio.com/?index=c34d06f4f4de2375658ed41f70177d59
             AverageValue += (value - AverageValue) / SampleSize;
-            if (value > MaximumValue) MaximumValue = value;
-            if (value < MinimumValue) MinimumValue = value;
+            if (value > MaximumValue)
+            {
+                MaximumValue = value;
+                MaximumValueDate = MostRecentValueDate;
+            }
+            if (value < MinimumValue)
+            {
+                MinimumValue = value;
+                MinimumValueDate = MostRecentValueDate;
+            }
         }
 
         public override string ToString() => SampleSize > 0
