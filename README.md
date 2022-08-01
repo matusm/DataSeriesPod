@@ -62,6 +62,12 @@ This class provides basic functionality for recording and processing data values
 * `MostRecentValueDate`
   Returns the date when the most recent value was recorded.
 
+* `MinimumValueDate`
+  Returns the date when the smallest value was recorded.
+
+* `MaximumValueDate`
+  Returns the date when the largest value was recorded.
+
 * `Duration`
   Returns the duration in seconds between the `FirstValueDate` and the `MostRecentValueDate`.
 
